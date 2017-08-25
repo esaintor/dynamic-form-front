@@ -1,0 +1,79 @@
+body {
+    background: #FFCACA;
+}
+
+button {
+    margin: 10px;
+}
+
+.form-droppable {
+    margin: 10px;
+    background: rgba(230, 255, 87, 0.64);
+    height: 80px;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.item-draggable,
+.form-draggable,
+.field-draggable {
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.form-ui {
+    margin: 10px;
+    border: 0px solid #cccccc;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.side-form,
+.main-form {
+    float: left
+}
+
+.side-form {
+    width: 40%;
+}
+
+.main-form {
+    width: 60%;
+}
+
+.addcontrol {
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: -9px;
+    right: -9px;
+    background: rgba(255, 127, 127, 0.47);
+    width: 20px;
+    height: 20px;
+    border-radius: 15px;
+    line-height: 27px;
+    text-align: center;
+    color: black;
+}
+
+.edit {
+    position: absolute;
+    top: -9px;
+    right: 15px;
+    background: rgba(127, 202, 255, 0.49);
+    width: 20px;
+    height: 20px;
+    border-radius: 15px;
+    line-height: 27px;
+    text-align: center;
+    color: black;
+}

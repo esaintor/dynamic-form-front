@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Demo draggable form</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/jquery-ui.css" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <link rel="stylesheet" href="css/jquery-ui.css" />
+    <script src="js/jquery-1.12.4.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
+
+</head>
+
+<body>
+    <div class="side-form">
+        <div class="form-draggable ui-widget-content">
+            <h6>Create form to drag it to the yellow field</h6>
+        </div>
+        <div class="item-draggable ui-widget-content">
+            text: <input type="text" class="form-control" readonly/>
+            <!-- <span class="close"></span> -->
+        </div>
+        <div class="item-draggable ui-widget-content">
+            dropbox: <select class="form-control" readonly><option></option></select>
+        </div>
+    </div>
+    <div class="main-form">
+        <div class="form-droppable"> Drop here </div>
+        <div class="sortable">
+            <div id="form1" class="form-ui">
+                <h5>form 1</h5>
+                <div class="sortable">
+                </div>
+            </div>
+        </div>
+        <button class="form-group btn btn-primary" id="save">save</button>
+        <button class="form-group btn" id="clear">clear</button>
+    </div>
+
+</body>
+
+</html>
