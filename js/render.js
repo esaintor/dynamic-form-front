@@ -130,7 +130,7 @@ $(document).ready(function() {
                         object.rows.push(field)
                 });
 
-                console.log(JSON.stringify(datas));
+                ///console.log(JSON.stringify(datas));
                 renderForm();
             }
 
