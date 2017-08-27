@@ -126,9 +126,11 @@ $(document).ready(function() {
                     field = { rowName: "label", elementId: elementId, rowTypeId: getId("textarea") };
 
                 datas.forEach(function(object) {
-                    if (object.tableName == targetName)
+                    if (object.elementId == event.target.id)
                         object.rows.push(field)
                 });
+
+                console.log(JSON.stringify(datas));
                 renderForm();
             }
 
