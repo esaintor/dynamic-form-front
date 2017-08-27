@@ -41,6 +41,10 @@ var droppableObject = {
                 $(item).addClass("form-control");
                 $(item).attr("type", "text");
                 $(div).append(item);
+                // add label
+                var label = document.createElement("label");
+                $(label).text("label");
+                $(div).append(label);
             }
             // if it is email
             if (ui.draggable.context.children[0].localName == "input" && ui.draggable.context.children[0].type == "email") {
@@ -48,12 +52,34 @@ var droppableObject = {
                 $(item).addClass("form-control");
                 $(item).attr("type", "email");
                 $(div).append(item);
+                // add label
+                var label = document.createElement("label");
+                $(label).text("label");
+                $(div).append(label);
             }
             // if it is password
             if (ui.draggable.context.children[0].localName == "input" && ui.draggable.context.children[0].type == "password") {
                 item = document.createElement("input");
                 $(item).addClass("form-control");
                 $(item).attr("type", "password");
+                $(div).append(item);
+                // add label
+                var label = document.createElement("label");
+                $(label).text("label");
+                $(div).append(label);
+            }
+            if (ui.draggable.context.children[0].localName == "input" && ui.draggable.context.children[0].type == "submit") {
+                item = document.createElement("input");
+                $(item).addClass("btn btn-primary");
+                $(item).attr("type", "submit");
+                $(item).attr("value", "submit");
+                $(div).append(item);
+            }
+            if (ui.draggable.context.children[0].localName == "input" && ui.draggable.context.children[0].type == "button") {
+                item = document.createElement("input");
+                $(item).addClass("btn");
+                $(item).attr("type", "button");
+                $(item).attr("value", "cancel");
                 $(div).append(item);
             }
             // add close button
@@ -66,10 +92,7 @@ var droppableObject = {
             $(edit).addClass("edit");
             $(edit).click(onclickedit);
             $(div).append(edit);
-            // add label
-            var label = document.createElement("label");
-            $(label).text("label");
-            $(div).append(label);
+
             // add field
             $(div).append(item);
             $(target).sortable();
@@ -127,7 +150,7 @@ $(document).ready(function() {
                     // jsonform = { id: "form" + (main.children.length + 1) };
                     // jsonobject.push(jsonform);
                     var target = event.target.children[1];
-                    var div = document.createElement("div");
+                    var div = document.createElement("form");
                     $(div).addClass("form-ui ui-sortable-handle");
                     $(div).attr("id", "form" + (main.children.length + 1));
                     // add title 

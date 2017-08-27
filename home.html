@@ -30,15 +30,23 @@
         <div class="item-draggable ui-widget-content">
             dropbox: <select class="form-control" readonly><option></option></select>
         </div>
+        <div class="row col-md-12">
+            <div class="item-draggable ui-widget-content col-md-6">
+                <input type="submit" class="btn btn-primary col-md-12" value="submit" readonly/>
+            </div>
+            <div class="item-draggable ui-widget-content col-sm-6">
+                <input type="button" class="btn col-md-12" value="cancel" readonly/>
+            </div>
+        </div>
     </div>
     <div class="main-form">
         <div class="form-droppable"> Drop here </div>
         <div class="sortable">
-            <div id="form1" class="form-ui">
+            <form id="form1" class="form-ui">
                 <h5>form 1</h5>
                 <div class="sortable">
                 </div>
-            </div>
+            </form>
         </div>
         <button class="form-group btn btn-primary" id="save">save</button>
         <button class="form-group btn" id="clear">clear</button>
