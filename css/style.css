@@ -52,7 +52,8 @@ ul {
     position: relative;
 }
 
-.close {
+
+/* .close {
     position: absolute;
     top: -9px;
     right: -9px;
@@ -63,9 +64,22 @@ ul {
     line-height: 27px;
     text-align: center;
     color: black;
+} */
+
+.closable {
+    float: right;
+    margin-left: 2px;
+    margin-right: 2px;
 }
 
-.edit {
+.editable {
+    float: right;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+
+/* .edit {
     position: absolute;
     top: -9px;
     right: 15px;
@@ -76,4 +90,4 @@ ul {
     line-height: 27px;
     text-align: center;
     color: black;
-}
+} */

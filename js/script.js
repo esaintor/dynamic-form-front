@@ -8,13 +8,23 @@ var onclickclose = function(e) {
 };
 var onclickedit = function(e) {
     console.log(e);
-    var labelText = prompt("Please enter label name:", );
-    if (labelText == null || labelText == "") {
-        alert("it is empty");
-    } else {
-        $(e.currentTarget.parentElement.children[2]).text(labelText);
-    }
-    console.log("double click");
+    // var labelText = prompt("Please enter label name:", );
+    // if (labelText == null || labelText == "") {
+    //     alert("it is empty");
+    // } else {
+    //     $(e.currentTarget.parentElement.children[2]).text(labelText);
+    // }
+    // console.log("double click");
+    //console.log(e.currentTarget.parentElement.children[3].type);
+    if (e.currentTarget.parentElement.lastChild.type == "text")
+        $("#textfield").modal();
+    else if (e.currentTarget.parentElement.lastChild.type == "select-one")
+        $("#dropdown").modal();
+    if (e.currentTarget.parentElement.lastChild.type == "submit" || e.currentTarget.parentElement.lastChild.type == "button")
+        $("#button").modal();
+    $(".modal-save").click(function(e) {
+        console.log(e);
+    });
 };
 var draggableObject = { revert: "valid" };
 var droppableObject = {
@@ -34,6 +44,10 @@ var droppableObject = {
                 item = document.createElement("select");
                 $(item).addClass("form-control");
                 $(div).append(item);
+                // add label
+                var label = document.createElement("label");
+                $(label).text("label");
+                $(div).append(label);
             }
             // if it is text
             if (ui.draggable.context.children[0].localName == "input" && ui.draggable.context.children[0].type == "text") {
@@ -84,12 +98,14 @@ var droppableObject = {
             }
             // add close button
             var close = document.createElement("span");
-            $(close).addClass("close");
+            $(close).addClass("closable");
+            $(close).text("close")
             $(close).click(onclickclose);
             $(div).append(close);
             // add edit button
             var edit = document.createElement("span");
-            $(edit).addClass("edit");
+            $(edit).addClass("editable");
+            $(edit).text("edit")
             $(edit).click(onclickedit);
             $(div).append(edit);
 
@@ -117,10 +133,10 @@ $(document).ready(function() {
             var label = $(formElement).context.children[0].innerText;
             var fields = [];
 
-            $($(formElement).context.children[1].children).each(function(index, fieldElement) {
+            $($(formElement).context.lastElementChild.children).each(function(index, fieldElement) {
                 //console.log($(fieldElement));
-                var label = $(fieldElement).context.children[2].innerText;
-                var type = $(fieldElement).context.children[3].type;
+                var label = $(fieldElement).context.firstElementChild.innerText;
+                var type = $(fieldElement).context.lastElementChild.type;
                 var field = { id: index, label: label, type: type };
                 fields.push(field);
             });

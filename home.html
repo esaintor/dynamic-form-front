@@ -12,6 +12,7 @@
 
     <link rel="stylesheet" href="css/jquery-ui.css" />
     <script src="js/jquery-1.12.4.js"></script>
+    <script src="js/jquery.js"></script>
     <script src="js/jquery-ui.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/script.js"></script>
@@ -24,11 +25,11 @@
             <h6>Create form to drag it to the yellow field</h6>
         </div>
         <div class="item-draggable ui-widget-content">
-            text: <input type="text" class="form-control" readonly/>
+            text <input type="text" class="form-control" readonly/>
             <!-- <span class="close"></span> -->
         </div>
         <div class="item-draggable ui-widget-content">
-            dropbox: <select class="form-control" readonly><option></option></select>
+            dropbox <select class="form-control" readonly><option></option></select>
         </div>
         <div class="row col-md-12">
             <div class="item-draggable ui-widget-content col-md-6">
@@ -52,7 +53,66 @@
         <button class="form-group btn" id="clear">clear</button>
         <button class="form-group btn" id="post">post</button>
     </div>
+    <!-- Textfield -->
+    <div class="modal fade" id="textfield" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Textfield</h4>
+                </div>
+                <div class="modal-body">
+                    label: <input id="labelfortextfield" class="form-control" type="text" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary modal-save" data="modal">Save</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
 
+        </div>
+    </div>
+    <!-- Dropdown -->
+    <div class="modal fade" id="dropdown" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Dropdown</h4>
+                </div>
+                <div class="modal-body">
+                    label: <input id="labelfordropdown" class="form-control" type="text" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary modal-save" data="modal">Save</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Button -->
+    <div class="modal fade" id="button" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Button</h4>
+                </div>
+                <div class="modal-body">
+                    value: <input id="valuefortext" class="form-control" type="text" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary modal-save" data-dismiss="modal">Save</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </body>
 
 </html>
