@@ -1,5 +1,5 @@
 body {
-    background: #FFCACA;
+    background: #57AEC0;
 }
 
 button {
@@ -76,6 +76,20 @@ ul {
     float: right;
     margin-left: 2px;
     margin-right: 2px;
+}
+
+.closable-form {
+    float: right;
+    margin-top: -35px;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.editable-form {
+    float: right;
+    margin-top: -35px;
+    margin-left: 2px;
+    margin-right: 45px;
 }
 
 
