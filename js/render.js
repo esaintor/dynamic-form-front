@@ -40,7 +40,6 @@ $(document).ready(function() {
             if (deleteObject.elementId == $(e.target.parentElement).context.id)
                 datas.splice(index, 1);
         });
-        //console.log(JSON.stringify(datas))
         renderForm();
     };
     var onclickedit = function(e) {
@@ -53,10 +52,8 @@ $(document).ready(function() {
                 console.log($(e.target.parentElement).context.lastChild.id);
                 if (row.elementId == ($(e.target.parentElement).context.lastChild.id))
                     (datas[dindex].rows).splice(rindex, 1);
-                //console.log(datas[dindex].rows[rindex]);
             });
         });
-        //console.log(JSON.stringify(datas));
         renderForm(0);
     };
     var onclickeditfield = function(e) {
@@ -129,8 +126,6 @@ $(document).ready(function() {
                     if (object.elementId == event.target.id)
                         object.rows.push(field)
                 });
-
-                ///console.log(JSON.stringify(datas));
                 renderForm();
             }
 
@@ -216,8 +211,7 @@ $(document).ready(function() {
                 $(edit).text("edit")
                 $(edit).click(onclickeditfield);
                 $(fieldObject).append($(edit));
-
-
+                // add field to form
                 $(fieldObject).append($(field));
                 $(form).sortable();
                 $(form).disableSelection();
@@ -230,63 +224,4 @@ $(document).ready(function() {
         });
     }
 
-    function renderField(form, data) {
-        data.rows.forEach(function(row) {
-            var fieldObject = document.createElement("div");
-            $(fieldObject).addClass("ui-sortable-handle field-draggable ui-widget-content addcontrol");
-            // add label as first child
-            var label = document.createElement("label");
-            $(label).text("label");
-            $(fieldObject).append(label);
-            var field;
-            switch (row.rowTypeId) {
-                case 0:
-                    field = document.createElement("input");
-                    $(field).addClass("form-control");
-                    $(field).attr("type", "text");
-                    $(field).attr("id", row.elementId);
-                    $(form).append(field);
-                    break;
-                case 1:
-                    field = document.createElement("textarea");
-                    $(field).addClass("form-control");
-                    $(field).attr("id", row.elementId);
-                    $(form).append(field);
-                    break;
-                case 2:
-                    field = document.createElement("input");
-                    $(field).addClass("form-control");
-                    $(field).attr("type", "date");
-                    $(field).attr("id", row.elementId);
-                    $(form).append(field);
-                    break;
-                case 3:
-                    field = document.createElement("select");
-                    $(field).addClass("form-control");
-                    $(field).attr("id", row.elementId);
-                    $(form).append(field);
-                    break;
-            }
-            // add close button
-            var close = document.createElement("span");
-            $(close).addClass("closable");
-            $(close).text("close")
-            $(close).click(onclickclosefield);
-            $(fieldObject).append($(close));
-            // add edit button
-            var edit = document.createElement("span");
-            $(edit).addClass("editable");
-            $(edit).text("edit")
-            $(edit).click(onclickeditfield);
-            $(fieldObject).append($(edit));
-
-
-            $(fieldObject).append($(field));
-            $(form).sortable();
-            $(form).disableSelection();
-            $(form).append(fieldObject);
-
-        });
-        return $(form);
-    }
 });
