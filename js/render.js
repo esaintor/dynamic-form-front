@@ -1,6 +1,22 @@
+// ALL METHODS ARE DECLARED HERE
+//            ___
+//          //   \\
+//         ||     ||
+//         ||      
+//          \\___
+//               \\ 
+//                ||
+//         ||     ||
+//          \\___//
+//
+//           ()()
+//          (_ _ )
+//          (____)
+//          ()  ()
+
+
+
 $(document).ready(function() {
-
-
     var raw = {
         "responseResultType": "SUCCESS",
         "message": null,
