@@ -594,6 +594,7 @@ button.ui-button::-moz-focus-inner {
 .ui-dialog .ui-dialog-titlebar {
     padding: .4em 1em;
     position: relative;
+    border-radius: 3px;
 }
 
 .ui-dialog .ui-dialog-title {

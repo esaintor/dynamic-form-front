@@ -96,83 +96,196 @@ $(document).ready(function() {
         var type = $(e.target.parentElement.lastChild).prop("type")
         $(document).ready(function() {
             type = getId(tag, type);
+
             switch (type) {
                 case 0:
-                    $("#textId").val($(e.target.parentElement).find("input").get(0).id);
-                    $("#textName").val($(e.target.parentElement).find("label").get(0).innerText);
+                    var formId = $(e.currentTarget.parentElement.parentElement).get(0).id;
+                    var fieldId = $(e.target.parentElement.parentElement.parentElement).find("input").get(0).id;
+                    var fieldValue = $(e.target.parentElement).find("label").get(0).innerText;
+                    $("#textId").val(fieldId);
+                    $("#textName").val(fieldValue);
                     $("#textDialog").dialog({
                         autoOpen: true,
                         modal: true,
                         title: 'Text dialog',
-                        buttons: {
-                            'Save': function() {
+                        buttons: [{
+                            text: "Save",
+                            "class": "btn btn-primary",
+                            click: function() {
                                 datas.forEach(function(data, dindex) {
-                                    data.rows.forEach(function(row, rindex) {
-                                        if (row.elementId == $("#textId").val()) {
-                                            row.rowName = $("#textName").val();
-                                            datas[dindex].rows[rindex] = row;
-                                        }
+                                    if (data.elementId == formId) {
+                                        data.rows.forEach(function(row, rindex) {
+                                            if (row.elementId == $("#textId").val()) {
+                                                row.rowName = $("#textName").val();
+                                                datas[dindex].rows[rindex] = row;
+                                            }
 
-                                    });
+                                        });
+                                    }
                                 });
                                 renderForm();
                                 $("#textDialog").dialog("close");
 
                             }
-                        }
+                        }]
                     });
                     break;
                 case 1:
-                    $("#textareaId").val($(e.target.parentElement).find("textarea").get(0).id);
-                    $("#textareaName").val($(e.target.parentElement).find("label").get(0).innerText);
+                    var formId = $(e.currentTarget.parentElement.parentElement).get(0).id;
+                    var fieldId = $(e.target.parentElement.parentElement.parentElement).find("textarea").get(0).id;
+                    var fieldValue = $(e.target.parentElement).find("label").get(0).innerText;
+                    $("#textareaId").val(fieldId);
+                    $("#textareaName").val(fieldValue);
                     $("#textareaDialog").dialog({
                         autoOpen: true,
                         modal: true,
                         title: 'Textarea dialog',
-                        buttons: {
-                            'Save': function() {
+                        buttons: [{
+                            text: "Save",
+                            "class": "btn btn-primary",
+                            click: function() {
                                 datas.forEach(function(data, dindex) {
-                                    data.rows.forEach(function(row, rindex) {
-                                        if (row.elementId == $("#textareaId").val()) {
-                                            row.rowName = $("#textareaName").val();
-                                            datas[dindex].rows[rindex] = row;
-                                        }
+                                    if (data.elementId == formId) {
+                                        data.rows.forEach(function(row, rindex) {
+                                            if (row.elementId == $("#textareaId").val()) {
+                                                row.rowName = $("#textareaName").val();
+                                                datas[dindex].rows[rindex] = row;
+                                            }
 
-                                    });
+                                        });
+                                    }
                                 });
                                 renderForm();
                                 $("#textareaDialog").dialog("close");
 
                             }
-                        }
+                        }]
                     });
                     break;
                 case 2:
-                    $("#dateId").val($(e.target.parentElement).find("input").get(0).id);
-                    $("#dateName").val($(e.target.parentElement).find("label").get(0).innerText);
+                    var formId = $(e.currentTarget.parentElement.parentElement).get(0).id;
+                    var fieldId = $(e.target.parentElement.parentElement.parentElement).find("input").get(0).id;
+                    var fieldValue = $(e.target.parentElement).find("label").get(0).innerText;
+                    $("#dateId").val(fieldId);
+                    $("#dateName").val(fieldId);
                     $("#dateDialog").dialog({
                         autoOpen: true,
                         modal: true,
                         title: 'Date dialog',
-                        buttons: {
-                            'Save': function() {
+                        buttons: [{
+                            text: "Save",
+                            "class": "btn btn-primary",
+                            click: function() {
                                 datas.forEach(function(data, dindex) {
-                                    data.rows.forEach(function(row, rindex) {
-                                        if (row.elementId == $("#dateId").val()) {
-                                            row.rowName = $("#dateName").val();
-                                            datas[dindex].rows[rindex] = row;
-                                        }
+                                    if (data.elementId == formId) {
+                                        data.rows.forEach(function(row, rindex) {
+                                            if (row.elementId == $("#dateId").val()) {
+                                                row.rowName = $("#dateName").val();
+                                                datas[dindex].rows[rindex] = row;
+                                            }
 
-                                    });
+                                        });
+                                    }
                                 });
                                 renderForm();
                                 $("#dateDialog").dialog("close");
 
                             }
-                        }
+                        }]
                     });
                     break;
                 case 3:
+                    console.log($(e.currentTarget.parentElement).find("select").get(0).id);
+                    var formId = $(e.currentTarget.parentElement.parentElement).get(0).id;
+                    var fieldId = $(e.currentTarget.parentElement).find("select").get(0).id;
+                    var fieldValue = $(e.currentTarget.parentElement).find("label").get(0).innerText;
+                    console.log(fieldId);
+                    datas.forEach(function(data, dindex) {
+                        if (data.elementId == formId) {
+                            data.rows.forEach(function(row, rindex) {
+                                if (row.elementId == fieldId) {
+                                    $("#option-list").children().remove();
+                                    row.items.forEach(function(item, index) {
+
+                                        var fieldObject = document.createElement("div");
+                                        $(fieldObject).addClass("ui-sortable-handle field-draggable ui-widget-content addcontrol");
+                                        // add label as first child
+                                        var label = document.createElement("label");
+                                        $(label).text("option " + index);
+                                        $(fieldObject).append(label);
+                                        // add input
+                                        var value = document.createElement("input");
+                                        $(value).addClass("form-control");
+                                        $(value).val(item.value)
+                                        $(fieldObject).append(value);
+                                        $("#option-list").append($(fieldObject));
+                                    });
+                                }
+                            });
+                        }
+                    });
+                    $("#dropdownId").val(fieldId);
+                    $("#dropdownName").val(fieldValue);
+                    $("#dropdownDialog").dialog({
+                        autoOpen: true,
+                        modal: true,
+                        title: 'Dropdown dialog',
+                        buttons: [{
+                            text: "Add option",
+                            "class": "btn",
+                            click: function() {
+                                console.log("add");
+                                var fieldObject = document.createElement("div");
+                                $(fieldObject).addClass("ui-sortable-handle field-draggable ui-widget-content addcontrol");
+                                // add label as first child
+                                var label = document.createElement("label");
+                                $(label).text("option");
+                                $(fieldObject).append(label);
+                                // add input
+                                var value = document.createElement("input");
+                                $(value).addClass("form-control");
+                                $(fieldObject).append(value);
+                                $("#option-list").append($(fieldObject));
+
+                                datas.forEach(function(data, dindex) {
+                                    if (data.elementId == formId) {
+                                        data.rows.forEach(function(row, rindex) {
+                                            if (row.elementId == fieldId) {
+                                                row.items.push({ id: row.items.length, value: "option" });
+                                                datas[dindex].rows[rindex] = row;
+                                            }
+                                        });
+                                    }
+                                });
+                            }
+                        }, {
+                            text: "Save",
+                            "class": "btn btn-primary",
+                            click: function() {
+
+                                // console.log($(options).find("input").val());
+                                datas.forEach(function(data, dindex) {
+                                    if (data.elementId == formId) {
+                                        data.rows.forEach(function(row, rindex) {
+                                            if (row.elementId == $("#dropdownId").val()) {
+                                                row.rowName = $("#dropdownName").val();
+                                                row.items.forEach(function(item, index) {
+                                                    var option = $("#option-list").children().get(index);
+                                                    row.items[index] = { id: index, value: $(option).find("input").val() };
+                                                });
+                                                datas[dindex].rows[rindex] = row;
+
+                                            }
+                                        });
+                                    }
+                                });
+                                renderForm();
+                                $("#dropdownDialog").dialog("close");
+
+                            }
+                        }]
+
+                    });
                     break;
             }
 
@@ -246,7 +359,7 @@ $(document).ready(function() {
                         field = { rowName: "label", elementId: elementId, rowTypeId: 2 };
                         break;
                     case 3:
-                        field = { rowName: "label", elementId: elementId, rowTypeId: 3 };
+                        field = { rowName: "label", elementId: elementId, rowTypeId: 3, items: [] };
                         break;
                 }
 
@@ -325,6 +438,12 @@ $(document).ready(function() {
                         field = document.createElement("select");
                         $(field).addClass("form-control");
                         $(field).attr("id", row.elementId);
+                        row.items.forEach(function(item, index) {
+                            var option = document.createElement("option");
+                            $(option).text(item.value);
+                            $(option).attr("value", item.value);
+                            $(field).append(option);
+                        })
                         break;
                 }
                 $(form).append($(field));
