@@ -1,72 +1,5 @@
 $(document).ready(function() {
 
-    // rowTypeId --- 0 = input text, 1 = text area, 2 = date, 3 dropdown
-    var raw = {
-        "responseResultType": "SUCCESS",
-        "message": null,
-        "recordsTotal": 4,
-        "recordsFiltered": null,
-        "data": [{
-                "id": 0,
-                "type": "text"
-            },
-            {
-                "id": 1,
-                "type": "textarea"
-            },
-            {
-                "id": 2,
-                "type": "date"
-            },
-            {
-                "id": 3,
-                "type": "dropdown"
-            }
-        ]
-    };
-    var datas = [];
-
-    function getId(type) {
-        var id;
-        raw.data.forEach(function(one) {
-            if (one.type == type) {
-                id = one.id;
-            }
-        })
-        return id;
-    }
-    var onclickclose = function(e) {
-        datas.forEach(function(deleteObject, index) {
-            if (deleteObject.elementId == $(e.target.parentElement).context.id)
-                datas.splice(index, 1);
-        });
-        renderForm();
-    };
-    var onclickedit = function(e) {
-        console.log(e);
-    };
-    var onclickclosefield = function(e) {
-        datas.forEach(function(data, dindex) {
-            data.rows.forEach(function(row, rindex) {
-                console.log(row.elementId);
-                console.log($(e.target.parentElement).context.lastChild.id);
-                if (row.elementId == ($(e.target.parentElement).context.lastChild.id))
-                    (datas[dindex].rows).splice(rindex, 1);
-            });
-        });
-        renderForm(0);
-    };
-    var onclickeditfield = function(e) {
-        console.log(e);
-    };
-    $("#clear").click(function() {
-        datas = [];
-        renderForm();
-    });
-
-    $("#save").click(function() {
-        console.log(JSON.stringify(datas));
-    });
 
     $(function() {
         $(".item-draggable").draggable(draggableObject);
@@ -74,6 +7,7 @@ $(document).ready(function() {
         $(".form-ui").droppable(droppableObject);
         $(".sortable").sortable();
         $(".sortable").disableSelection();
+
         $(".form-draggable").draggable(draggableObject);
         $(".form-droppable").droppable({
             classes: {
@@ -81,7 +15,8 @@ $(document).ready(function() {
                 "ui-droppable-hover": "ui-state-hover"
             },
             drop: function(event, ui) {
-                if (ui.draggable.context.className.includes("form-draggable")) {
+                console.log($(ui.draggable).hasClass("form-draggable"));
+                if ($(ui.draggable).hasClass("form-draggable")) {
                     var form;
                     var rows = [];
                     form = { tableName: "form", elementId: ("form" + datas.length), rows };
@@ -103,23 +38,26 @@ $(document).ready(function() {
         },
         drop: function(event, ui) {
             console.log(event.target.id);
-            if (ui.draggable.context.className.includes("item-draggable")) {
+
+            if ($(ui.draggable).hasClass("item-draggable")) {
                 var targetName = event.target.firstChild.innerText;
                 var elementId;
                 datas.forEach(function(data) {
                     elementId = "field" + data.rows.length;
                 });
-                // it it is select
-                if (ui.draggable.context.children[0].localName == "select")
-                    field = { rowName: "label", elementId: elementId, rowTypeId: getId("dropdown") };
+                console.log($(ui.draggable).children().first());
+                var item = $(ui.draggable).children().get(0);
                 // if it is text
-                if (ui.draggable.context.children[0].localName == "input" && ui.draggable.context.children[0].type == "text")
+                if (item.localName == "input" && item.type == "text")
                     field = { rowName: "label", elementId: elementId, rowTypeId: getId("text") };
                 // if it is text
-                if (ui.draggable.context.children[0].localName == "input" && ui.draggable.context.children[0].type == "date")
+                if (item.localName == "input" && item.type == "date")
                     field = { rowName: "label", elementId: elementId, rowTypeId: getId("date") };
+                //it it is select
+                if (item.localName == "select")
+                    field = { rowName: "label", elementId: elementId, rowTypeId: getId("dropdown") };
                 // if it is textarea
-                if (ui.draggable.context.children[0].localName == "textarea")
+                if (item.localName == "textarea")
                     field = { rowName: "label", elementId: elementId, rowTypeId: getId("textarea") };
 
                 datas.forEach(function(object) {
@@ -135,6 +73,7 @@ $(document).ready(function() {
 
     function renderForm() {
         var target = $("#form-list");
+        $(target).removeClass("empty");
         $(target[0].children).remove();
 
         datas.forEach(function(data) {

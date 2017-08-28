@@ -77,3 +77,11 @@ ul {
     margin-left: 2px;
     margin-right: 45px;
 }
+
+.empty {
+    border: 3px dotted gray;
+    border-radius: 15px;
+    height: 300px;
+    margin: 10px;
+    padding: 50px;
+}
